@@ -3,6 +3,10 @@ version: '2'
 services:
     db:
         image: mysql
+        user: "1000:50"
+        restart: always
+        ports:
+            - 3306:3306
         volumes:
             - "./.data/db:/var/lib/mysql"
         environment:
@@ -12,6 +16,7 @@ services:
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     php:
         build: php7-fpm
+        restart: always
         ports:
             - 9000:9000
         volumes:
@@ -19,6 +24,7 @@ services:
             - ./logs/symfony:/var/www/symfony/app/logs
     nginx:
         build: nginx
+        restart: always
         ports:
             - 80:80
         volumes_from:
