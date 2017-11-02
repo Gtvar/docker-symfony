@@ -15,10 +15,17 @@ services:
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     php:
+<<<<<<< HEAD
         build: php7-fpm
         restart: always
         ports:
             - 9000:9000
+=======
+        build:
+            context: php7-fpm
+            args:
+                TIMEZONE: ${TIMEZONE}
+>>>>>>> upstream/master
         volumes:
             - ${SYMFONY_APP_PATH}:/var/www/symfony
             - ./logs/symfony:/var/www/symfony/app/logs
